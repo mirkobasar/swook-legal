@@ -3,45 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Swook — Legales</title>
+  <title>Swook — Intercambiá libros con tus vecinos</title>
   <style>
-    :root { --primary: #4A6984; --text: #1A1A1A; --muted: #555; }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text); line-height: 1.6; margin: 0;
-      padding: 40px 20px; max-width: 720px; margin: 0 auto;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f9f7f4;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
     }
-    h1 { color: var(--primary); font-size: 28px; }
-    .brand { font-size: 40px; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
-    .sub { color: var(--muted); margin-bottom: 32px; }
-    a.card {
-      display: block; text-decoration: none; color: var(--text);
-      border: 1px solid #e0e0e0; border-radius: 14px; padding: 20px 24px;
-      margin-bottom: 16px; transition: border-color .15s;
+    h1 { font-size: 3.5rem; color: #4A6984; letter-spacing: -1px; margin-bottom: 16px; }
+    p { font-size: 1.15rem; color: #555; max-width: 480px; line-height: 1.6; margin-bottom: 40px; }
+    .badge {
+      display: inline-block;
+      background: #4A6984;
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 48px;
     }
-    a.card:hover { border-color: var(--primary); }
-    a.card strong { color: var(--primary); font-size: 18px; }
-    a.card span { display: block; color: var(--muted); margin-top: 4px; font-size: 14px; }
-    footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
-    footer a { color: var(--primary); }
+    footer { font-size: 0.85rem; color: #aaa; display: flex; gap: 20px; }
+    footer a { color: #4A6984; text-decoration: none; }
   </style>
 </head>
 <body>
-  <div class="brand">Swook</div>
-  <p class="sub">Intercambiá, regalá y encontrá libros con personas cerca tuyo.</p>
-
-  <a class="card" href="terminos.html">
-    <strong>Términos y Condiciones</strong>
-    <span>Reglas de uso, responsabilidades y política de contenido.</span>
-  </a>
-  <a class="card" href="privacidad.html">
-    <strong>Política de Privacidad</strong>
-    <span>Qué datos tratamos, para qué, y tus derechos.</span>
-  </a>
-
+  <h1>Swook</h1>
+  <p>Encontrá, intercambiá y regalá libros con vecinos de tu barrio.</p>
+  <a class="badge" href="https://apps.apple.com/app/swook">Descargar en el App Store</a>
   <footer>
-    Contacto: <a href="mailto:swook.support@gmail.com">swook.support@gmail.com</a>
+    <a href="privacidad.html">Política de Privacidad</a>
+    <a href="terminos.html">Términos y Condiciones</a>
+    <a href="mailto:swook.support@gmail.com">Contacto</a>
   </footer>
 </body>
 </html>
