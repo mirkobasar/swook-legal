@@ -4,10 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Swook — Intercambiá libros con tus vecinos</title>
+  <meta name="description" content="Encontrá, intercambiá y regalá libros con personas de tu barrio. Disponible en iOS." />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #f9f7f4;
       color: #1a1a1a;
       min-height: 100vh;
@@ -15,34 +17,195 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 40px 24px;
+      padding: 40px 20px;
     }
-    h1 { font-size: 3.5rem; color: #4A6984; letter-spacing: -1px; margin-bottom: 16px; }
-    p { font-size: 1.15rem; color: #555; max-width: 480px; line-height: 1.6; margin-bottom: 40px; }
-    .badge {
+
+    .card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 48px 40px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.07);
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #4A6984;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .tagline {
+      font-size: 16px;
+      color: #666;
+      line-height: 1.6;
+      max-width: 300px;
+      margin: 0 auto 36px;
+    }
+
+    .appstore-btn {
       display: inline-block;
+      margin-bottom: 40px;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    .appstore-btn:hover { transform: scale(1.04); opacity: 0.9; }
+    .appstore-btn img { height: 52px; display: block; }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      color: #bbb;
+      font-size: 13px;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #ebebeb;
+    }
+
+    .android-label {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #1a1a1a;
+    }
+    .android-hint {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    input[type="email"] {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.15s;
+      background: #fafafa;
+      color: #1a1a1a;
+    }
+    input[type="email"]:focus { border-color: #4A6984; background: #fff; }
+
+    button {
+      padding: 12px 18px;
       background: #4A6984;
       color: #fff;
-      padding: 14px 32px;
-      border-radius: 30px;
-      font-size: 1rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
       font-weight: 600;
-      text-decoration: none;
-      margin-bottom: 48px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s, transform 0.1s;
     }
-    footer { font-size: 0.85rem; color: #aaa; display: flex; gap: 20px; }
+    button:hover { background: #3a5870; }
+    button:active { transform: scale(0.97); }
+    button:disabled { background: #b0c4d4; cursor: default; }
+
+    .feedback {
+      margin-top: 14px;
+      font-size: 14px;
+      min-height: 20px;
+      color: #2e7d32;
+      font-weight: 500;
+    }
+    .feedback.error { color: #c62828; }
+
+    footer {
+      margin-top: 32px;
+      font-size: 13px;
+      color: #bbb;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
     footer a { color: #4A6984; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <h1>Swook</h1>
-  <p>Encontrá, intercambiá y regalá libros con vecinos de tu barrio.</p>
-  <a class="badge" href="https://apps.apple.com/app/swook">Descargar en el App Store</a>
+  <div class="card">
+    <h1>Swook</h1>
+    <p class="tagline">Encontrá, intercambiá y regalá libros<br>con personas de tu barrio.</p>
+
+    <a class="appstore-btn" href="https://apps.apple.com/app/id6793781403" target="_blank" rel="noopener">
+      <img
+        src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+        alt="Descargar en el App Store"
+      />
+    </a>
+
+    <div class="divider">¿Usás Android?</div>
+
+    <p class="android-label">Avisame cuando esté disponible</p>
+    <p class="android-hint">Estamos trabajando en la versión para Android.<br>Te avisamos en cuanto esté lista.</p>
+
+    <form id="waitlist-form" onsubmit="submitWaitlist(event)">
+      <div class="form-row">
+        <input type="email" id="email-input" placeholder="tu@email.com" required autocomplete="email" />
+        <button type="submit" id="submit-btn">Anotarme</button>
+      </div>
+      <p class="feedback" id="feedback" aria-live="polite"></p>
+    </form>
+  </div>
+
   <footer>
     <a href="privacidad.html">Política de Privacidad</a>
     <a href="terminos.html">Términos y Condiciones</a>
     <a href="mailto:swook.support@gmail.com">Contacto</a>
   </footer>
+
+  <script>
+    async function submitWaitlist(e) {
+      e.preventDefault();
+      const email = document.getElementById('email-input').value.trim();
+      const btn = document.getElementById('submit-btn');
+      const fb = document.getElementById('feedback');
+
+      btn.disabled = true;
+      btn.textContent = '...';
+      fb.textContent = '';
+      fb.className = 'feedback';
+
+      try {
+        const res = await fetch('https://swook.onrender.com/waitlist/android', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+
+        if (res.status === 201 || res.ok) {
+          const data = await res.json();
+          fb.textContent = data.status === 'already_registered'
+            ? '¡Ya estás anotado! Te avisamos cuando salga.'
+            : '¡Listo! Te avisamos cuando Swook llegue a Android.';
+          document.getElementById('email-input').value = '';
+        } else {
+          throw new Error();
+        }
+      } catch {
+        fb.className = 'feedback error';
+        fb.textContent = 'Algo salió mal. Intentá de nuevo.';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Anotarme';
+      }
+    }
+  </script>
 </body>
 </html>
