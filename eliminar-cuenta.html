@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eliminar cuenta — Swook</title>
+  <style>
+    :root { --primary: #4A6984; --text: #1A1A1A; --muted: #555; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text); line-height: 1.65; margin: 0 auto;
+      padding: 40px 20px; max-width: 720px;
+    }
+    a.back { color: var(--primary); text-decoration: none; font-size: 14px; }
+    h1 { color: var(--primary); font-size: 26px; margin-top: 12px; }
+    h2 { color: var(--primary); font-size: 19px; margin-top: 32px; }
+    .updated { color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+    .highlight {
+      background: #eef3f7; border-left: 4px solid var(--primary);
+      padding: 14px 18px; border-radius: 8px; margin: 20px 0;
+    }
+    .warning {
+      background: #fdf3f3; border-left: 4px solid #c0392b;
+      padding: 14px 18px; border-radius: 8px; margin: 20px 0; color: #7a1a1a;
+    }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 6px; }
+    a { color: var(--primary); }
+    footer { margin-top: 48px; color: var(--muted); font-size: 13px; border-top: 1px solid #e0e0e0; padding-top: 16px; }
+    .steps { counter-reset: steps; padding-left: 0; list-style: none; }
+    .steps li { counter-increment: steps; display: flex; gap: 14px; margin-bottom: 16px; }
+    .steps li::before {
+      content: counter(steps);
+      min-width: 28px; height: 28px; border-radius: 50%;
+      background: var(--primary); color: #fff;
+      font-weight: 700; font-size: 14px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <a class="back" href="index.html">← Volver</a>
+  <h1>Eliminar tu cuenta de Swook</h1>
+  <p class="updated">Última actualización: 5 de octubre de 2026</p>
+
+  <p>
+    Podés eliminar tu cuenta de Swook en cualquier momento, directamente desde la aplicación.
+    El proceso es inmediato y permanente.
+  </p>
+
+  <div class="warning">
+    <strong>Atención:</strong> la eliminación es irreversible. Una vez confirmada, no es posible
+    recuperar tu cuenta ni ninguno de tus datos.
+  </div>
+
+  <h2>Cómo eliminar tu cuenta desde la app</h2>
+  <ol class="steps">
+    <li>Abrí la app de Swook e iniciá sesión.</li>
+    <li>Tocá tu foto de perfil o el ícono de usuario en la esquina superior derecha.</li>
+    <li>Ingresá a <strong>Configuración</strong>.</li>
+    <li>Desplazate hasta el final y tocá <strong>"Eliminar cuenta"</strong>.</li>
+    <li>Confirmá la acción en el diálogo que aparece.</li>
+  </ol>
+
+  <h2>¿Qué datos se eliminan?</h2>
+  <ul>
+    <li>Tu perfil (nombre, foto, barrio, configuración)</li>
+    <li>Todos tus libros y publicaciones</li>
+    <li>Tus conversaciones y mensajes</li>
+    <li>Tus intercambios, ventas y regalos registrados</li>
+    <li>Tus reseñas y bitácoras de lectura</li>
+  </ul>
+
+  <div class="highlight">
+    Tu dirección de email puede conservarse en los registros de autenticación por un período
+    mínimo requerido por las regulaciones aplicables, y luego es eliminada definitivamente.
+  </div>
+
+  <h2>¿No podés acceder a la app?</h2>
+  <p>
+    Si no podés iniciar sesión y querés solicitar la eliminación de tus datos, escribinos a
+    <a href="mailto:swook.support@gmail.com">swook.support@gmail.com</a> desde el email
+    asociado a tu cuenta. Procesaremos tu solicitud en un plazo máximo de 30 días.
+  </p>
+
+  <footer>
+    Swook &mdash; <a href="privacidad.html">Política de privacidad</a> &mdash;
+    <a href="terminos.html">Términos de uso</a>
+  </footer>
+</body>
+</html>
