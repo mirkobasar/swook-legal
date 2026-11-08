@@ -2,214 +2,167 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Swook — Intercambiá libros con tus vecinos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Política de seguridad: el navegador solo carga código, estilos, imágenes y datos de estos orígenes.
+       Si se agrega un servicio nuevo (por ejemplo, el link de Google Play o analytics), hay que sumarlo acá. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://swook.onrender.com https://developer.apple.com https://books.google.com https://books.googleusercontent.com https://covers.openlibrary.org https://archive.org https://*.archive.org; connect-src 'self' https://swook.onrender.com https://tiles.openfreemap.org; worker-src blob:; child-src blob:; object-src 'none'; base-uri 'self'; form-action 'self'" />
+  <title>Swook: cambiá, vendé y regalá libros cerca tuyo</title>
+  <meta name="description" content="Con un solo libro, leé todos los que quieras. Mirá en el mapa los libros que ya están publicados y bajate Swook para pedirlos." />
+  <meta name="theme-color" content="#4A6984" />
+  <meta property="og:title" content="Swook: cambiá, vendé y regalá libros cerca tuyo" />
+  <meta property="og:description" content="Mirá en el mapa los libros que ya están publicados cerca tuyo." />
+  <meta property="og:url" content="https://swookapp.com" />
+  <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet" />
-  <meta name="description" content="Encontrá, intercambiá y regalá libros con personas de tu barrio. Disponible en iOS." />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f9f7f4;
-      color: #1a1a1a;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 24px;
-      padding: 48px 40px;
-      max-width: 420px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.07);
-    }
-
-    h1 {
-      font-family: 'Chewy', cursive;
-      font-size: 3.5rem;
-      font-weight: 400;
-      color: #4A6984;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
-    }
-
-    .tagline {
-      font-size: 16px;
-      color: #666;
-      line-height: 1.6;
-      max-width: 300px;
-      margin: 0 auto 36px;
-    }
-
-    .appstore-btn {
-      display: inline-block;
-      margin-bottom: 40px;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
-    .appstore-btn:hover { transform: scale(1.04); opacity: 0.9; }
-    .appstore-btn img { height: 52px; display: block; }
-
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 22px;
-      color: #bbb;
-      font-size: 13px;
-    }
-    .divider::before, .divider::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: #ebebeb;
-    }
-
-    .android-label {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: #1a1a1a;
-    }
-    .android-hint {
-      font-size: 13px;
-      color: #999;
-      margin-bottom: 18px;
-      line-height: 1.5;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 8px;
-    }
-
-    input[type="email"] {
-      flex: 1;
-      padding: 12px 16px;
-      border: 1.5px solid #e0e0e0;
-      border-radius: 12px;
-      font-size: 15px;
-      outline: none;
-      transition: border-color 0.15s;
-      background: #fafafa;
-      color: #1a1a1a;
-    }
-    input[type="email"]:focus { border-color: #4A6984; background: #fff; }
-
-    button {
-      padding: 12px 18px;
-      background: #4A6984;
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.15s, transform 0.1s;
-    }
-    button:hover { background: #3a5870; }
-    button:active { transform: scale(0.97); }
-    button:disabled { background: #b0c4d4; cursor: default; }
-
-    .feedback {
-      margin-top: 14px;
-      font-size: 14px;
-      min-height: 20px;
-      color: #2e7d32;
-      font-weight: 500;
-    }
-    .feedback.error { color: #c62828; }
-
-    footer {
-      margin-top: 32px;
-      font-size: 13px;
-      color: #bbb;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    footer a { color: #4A6984; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" integrity="sha384-MinO0mNliZ3vwppuPOUnGa+iq619pfMhLVUXfC4LHwSCvF9H+6P/KO4Q7qBOYV5V" crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
-  <div class="card">
-    <h1>Swook</h1>
-    <p class="tagline">Encontrá, intercambiá y regalá libros<br>con personas estés donde estés.</p>
-
-    <a class="appstore-btn" href="https://apps.apple.com/app/id6793781403" target="_blank" rel="noopener">
-      <img
-        src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-        alt="Descargar en el App Store"
-      />
-    </a>
-
-    <div class="divider">¿Usás Android?</div>
-
-    <p class="android-label">Avisame cuando esté disponible</p>
-    <p class="android-hint">Estamos trabajando en la versión para Android.<br>Te avisamos en cuanto esté lista.</p>
-
-    <form id="waitlist-form" onsubmit="submitWaitlist(event)">
-      <div class="form-row">
-        <input type="email" id="email-input" placeholder="tu@email.com" required autocomplete="email" />
-        <button type="submit" id="submit-btn">Anotarme</button>
+  <main>
+    <section class="cover hero on-cover" aria-labelledby="hero-title">
+      <div class="cover-text">
+        <p class="wordmark">Swook</p>
+        <h1 class="hero-title" id="hero-title">Con un solo libro, leé todos los que quieras.</h1>
+        <p class="hero-sub">Cambiá, vendé o regalá los libros que ya leíste a otros lectores cerca tuyo.</p>
+        <div class="store-badges">
+          <a class="badge" href="https://apps.apple.com/app/id6793781403" target="_blank" rel="noopener">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Descargar en el App Store" width="162" height="54" />
+        </a>
+          <!-- Cuando la app esté en Play Store: reemplazar este botón por la insignia oficial con el link a la ficha. -->
+          <button class="play-badge" type="button" data-open-android>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00C3FF" d="M3.6 1.8 13.5 12 3.6 22.2c-.4-.2-.6-.7-.6-1.200V3c0-.5.2-1 .6-1.200z"/><path fill="#00E676" d="M16.900 8.600 5 1.800c-.5-.3-1-.3-1.400 0L13.500 12z"/><path fill="#FF3D47" d="M16.900 15.400 13.500 12l-9.900 10.200c.4.3.9.3 1.400 0z"/><path fill="#FFC400" d="m16.900 8.600-3.400 3.400 3.400 3.400 3.900-2.200c1.100-.6 1.100-2 0-2.600z"/></svg>
+            <span><small>Próximamente en</small>Google Play</span>
+          </button>
+        </div>
+        <a class="scroll-cue" href="#mapa" aria-label="Bajá para ver el mapa con los libros">
+          <svg viewBox="0 0 40 18" aria-hidden="true"><path d="M5 4 L20 14 L35 4" /></svg>
+          <svg viewBox="0 0 40 18" aria-hidden="true"><path d="M5 4 L20 14 L35 4" /></svg>
+          <svg viewBox="0 0 40 18" aria-hidden="true"><path d="M5 4 L20 14 L35 4" /></svg>
+        </a>
       </div>
-      <p class="feedback" id="feedback" aria-live="polite"></p>
+      <div class="figures" aria-hidden="true">
+        <div class="spine">
+          <svg class="arcs" viewBox="0 0 300 34" preserveAspectRatio="none"><path d="M4 5 Q150 22 296 5" /><path d="M4 19 Q150 36 296 19" /></svg>
+          <span class="spine-name">Swook</span>
+          <div class="spine-end">
+            <svg class="arcs" viewBox="0 0 300 34" preserveAspectRatio="none"><path d="M4 5 Q150 22 296 5" /><path d="M4 19 Q150 36 296 19" /></svg>
+            <p class="spine-phrase">No dejes de leer</p>
+            <svg class="arcs" viewBox="0 0 300 34" preserveAspectRatio="none"><path d="M4 5 Q150 22 296 5" /><path d="M4 19 Q150 36 296 19" /></svg>
+          </div>
+        </div>
+        <img class="figure left" src="assets/lectora.png" alt="" width="330" height="650" />
+        <img class="figure right" src="assets/lector.png" alt="" width="354" height="650" />
+      </div>
+      <svg class="pages left" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 C420 22 800 62 1000 114" /><path d="M0 38 C380 44 720 74 940 112" /><path d="M0 64 C340 68 650 88 880 111" /><path d="M0 90 C300 92 600 102 810 110" /><path class="base" d="M0 116 L1000 116" /></svg>
+      <svg class="pages right" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 C420 22 800 62 1000 114" /><path d="M0 38 C380 44 720 74 940 112" /><path d="M0 64 C340 68 650 88 880 111" /><path d="M0 90 C300 92 600 102 810 110" /><path class="base" d="M0 116 L1000 116" /></svg>
+    </section>
+
+    <section class="explore" id="mapa" aria-labelledby="map-title">
+      <div class="map-intro">
+        <h2 id="map-title">Mirá qué libros hay cerca tuyo</h2>
+      </div>
+      <div class="map-wrap on-cover">
+        <div id="map" role="region" aria-label="Mapa de libros publicados en Swook"></div>
+        <button class="btn map-all" id="map-all" type="button" hidden>Ver todos los libros</button>
+        <div class="map-status" id="map-status" role="status">Buscando libros…</div>
+        <aside class="panel" id="panel" role="dialog" aria-labelledby="panel-title" hidden>
+          <div class="panel-head">
+            <div>
+              <h3 id="panel-title"></h3>
+              <p id="panel-count"></p>
+            </div>
+            <button class="panel-close" id="panel-close" type="button" aria-label="Cerrar">×</button>
+          </div>
+          <ul class="panel-list" id="panel-list"></ul>
+          <div class="panel-cta">
+            <p>Si te interesó alguno de estos libros, descargá la app para contactar al dueño.</p>
+            <!-- En computadora baja a la sección de descarga. En iPhone abre el App Store y en Android el
+                 formulario de aviso: eso lo resuelve site.js. -->
+            <a class="btn" href="#descargar" id="panel-download">Descargar la app</a>
+          </div>
+        </aside>
+      </div>
+      <div class="stats pending" id="stats" role="region" aria-labelledby="stats-title" aria-busy="true">
+        <h2 id="stats-title">Swook ya está en movimiento</h2>
+        <dl class="stats-grid">
+          <div data-stat="cambiaron_de_dueno"><dd>–</dd><dt>libros que ya cambiaron de dueño</dt></div>
+          <div data-stat="usuarios"><dd>–</dd><dt>usuarios en Swook</dt></div>
+          <div data-stat="libros"><dd>–</dd><dt>libros publicados</dt></div>
+        </dl>
+      </div>
+    </section>
+
+
+
+    <section class="closing on-cover" id="descargar" aria-labelledby="closing-title">
+      <div class="closing-inner">
+        <h2 id="closing-title">¿Vos también querés encontrar tu próximo libro?</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-n" aria-hidden="true">1</span>
+            <h4>Descargá la app</h4>
+            <p id="step-download">Descargala gratis desde el App Store o, muy pronto, desde Google Play.</p>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">2</span>
+            <h4>Publicá tu libro</h4>
+            <p>Escaneá el código de <span class="nowrap">barras<button class="info-btn" type="button" id="isbn-btn" aria-label="Dónde está el código de barras" aria-expanded="false" aria-controls="isbn-info">i</button></span> y listo. Después elegí si lo cambiás, lo vendés o lo regalás.</p>
+            <div class="info-pop" id="isbn-info" hidden>
+              <svg class="barcode" viewBox="0 0 150 56" aria-hidden="true"><rect width="150" height="56" rx="4" fill="#fff" /><path d="M12 7v32M16 7v32M19 7v32M25 7v32M29 7v32M35 7v32M38 7v32M44 7v32M50 7v32M53 7v32M59 7v32M63 7v32M68 7v32M74 7v32M78 7v32M83 7v32M89 7v32M92 7v32M98 7v32M103 7v32M107 7v32M113 7v32M117 7v32M122 7v32M127 7v32M131 7v32M137 7v32" stroke="#213242" stroke-width="2" /><text x="75" y="50" text-anchor="middle" font-size="9" font-family="Poppins, sans-serif" fill="#213242">ISBN 978 000 000 000 0</text></svg>
+              <p>Suele estar abajo, en la contratapa. El número que lo acompaña es el ISBN, el código de 10 o 13 dígitos que identifica cada libro.</p>
+              <p>Al escanearlo, Swook completa los datos del libro por vos.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">3</span>
+            <h4>Elegí uno que te guste</h4>
+            <p>Podés intercambiarlo, comprarlo o llevártelo gratis.</p>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">4</span>
+            <h4>Coordiná el encuentro</h4>
+            <p>Eligen un punto en el mapa y cada uno se va con su libro.</p>
+          </li>
+          </ol>
+        <p class="closing-cta">Bajate Swook y conseguilo hoy mismo.</p>
+        <div class="closing-actions">
+          <div class="store-badges">
+          <a class="badge" href="https://apps.apple.com/app/id6793781403" target="_blank" rel="noopener">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Descargar en el App Store" width="162" height="54" loading="lazy" />
+        </a>
+          <!-- Cuando la app esté en Play Store: reemplazar este botón por la insignia oficial con el link a la ficha. -->
+          <button class="play-badge" type="button" data-open-android>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00C3FF" d="M3.6 1.8 13.5 12 3.6 22.2c-.4-.2-.6-.7-.6-1.200V3c0-.5.2-1 .6-1.200z"/><path fill="#00E676" d="M16.900 8.600 5 1.800c-.5-.3-1-.3-1.400 0L13.500 12z"/><path fill="#FF3D47" d="M16.900 15.400 13.500 12l-9.900 10.200c.4.3.9.3 1.400 0z"/><path fill="#FFC400" d="m16.900 8.600-3.400 3.400 3.400 3.400 3.900-2.200c1.100-.6 1.100-2 0-2.600z"/></svg>
+            <span><small>Próximamente en</small>Google Play</span>
+          </button>
+        </div>
+        </div>
+      </div>
+      <footer>
+        <a href="privacidad.html">Política de Privacidad</a>
+        <a href="terminos.html">Términos y Condiciones</a>
+        <a href="mailto:swook.support@gmail.com">Contacto</a>
+      </footer>
+    </section>
+  </main>
+
+  <dialog class="android-dialog" id="android-dialog" aria-labelledby="android-title">
+    <button class="dialog-close" type="button" aria-label="Cerrar">×</button>
+    <svg class="dialog-play" viewBox="0 0 24 24" aria-hidden="true"><path fill="#00C3FF" d="M3.6 1.8 13.5 12 3.6 22.2c-.4-.2-.6-.7-.6-1.200V3c0-.5.2-1 .6-1.200z"/><path fill="#00E676" d="M16.900 8.600 5 1.800c-.5-.3-1-.3-1.400 0L13.500 12z"/><path fill="#FF3D47" d="M16.900 15.400 13.500 12l-9.900 10.200c.4.3.9.3 1.400 0z"/><path fill="#FFC400" d="m16.900 8.600-3.400 3.400 3.400 3.400 3.900-2.200c1.100-.6 1.100-2 0-2.600z"/></svg>
+    <h2 id="android-title">Swook llega pronto a Android</h2>
+    <p>Dejanos tu email y te avisamos apenas esté en Google Play.</p>
+    <form class="android-form">
+      <div class="form-row">
+        <input type="email" id="email-android" aria-label="Tu email" placeholder="tu@email.com" required autocomplete="email" autofocus />
+        <button type="submit">Avisarme</button>
+      </div>
+      <p class="feedback" aria-live="polite"></p>
     </form>
-  </div>
+  </dialog>
 
-  <footer>
-    <a href="privacidad.html">Política de Privacidad</a>
-    <a href="terminos.html">Términos y Condiciones</a>
-    <a href="mailto:swook.support@gmail.com">Contacto</a>
-  </footer>
-
-  <script>
-    async function submitWaitlist(e) {
-      e.preventDefault();
-      const email = document.getElementById('email-input').value.trim();
-      const btn = document.getElementById('submit-btn');
-      const fb = document.getElementById('feedback');
-
-      btn.disabled = true;
-      btn.textContent = '...';
-      fb.textContent = '';
-      fb.className = 'feedback';
-
-      try {
-        const res = await fetch('https://swook.onrender.com/waitlist/android', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
-        });
-
-        if (res.status === 201 || res.ok) {
-          const data = await res.json();
-          fb.textContent = data.status === 'already_registered'
-            ? '¡Ya estás anotado! Te avisamos cuando salga.'
-            : '¡Listo! Te avisamos cuando Swook llegue a Android.';
-          document.getElementById('email-input').value = '';
-        } else {
-          throw new Error();
-        }
-      } catch {
-        fb.className = 'feedback error';
-        fb.textContent = 'Algo salió mal. Intentá de nuevo.';
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Anotarme';
-      }
-    }
-  </script>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" integrity="sha384-SYKAG6cglRMN0RVvhNeBY0r3FYKNOJtznwA0v7B5Vp9tr31xAHsZC0DqkQ/pZDmj" crossorigin="anonymous"></script>
+  <script src="assets/site.js"></script>
 </body>
 </html>
